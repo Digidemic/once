@@ -97,7 +97,7 @@ class Example {
     </table>
 
 
-#### Check out the [example app for Once](/example-once/)!
+### Check out the [example app for Once](/example-once/)!
 
 <br>
 
@@ -250,24 +250,33 @@ There are 3 main usages for Once. Two of which directly call a function without 
 
 ## Installation
 
-### Install with AAR and gradle (Local)
-1) Download the latest [once.aar](once.aar).
-2) Move `once.aar` to your project's `libs` directory (Example: `YourProject/app/libs/`).
-3) In your `build.gradle`, add <b>only one</b> of the following to your `dependencies { }`:
+### Install with JitPack
+[![](https://jitpack.io/v/Digidemic/once.svg)](https://jitpack.io/#Digidemic/once)
+1) Add JitPack to your project's root `build.gradle` at the end of `repositories`:
 - ```groovy
-  // adds only once.aar
-  implementation fileTree(dir: "libs", include: ["once.aar"])
-  
-  // OR
-
-  // adds all .aar files in your libs directory.
-  implementation fileTree(dir: "libs", include: ["*.aar"]) 
+  dependencyResolutionManagement {
+      repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+      repositories {
+          mavenCentral()
+          maven { url 'https://jitpack.io' }
+    }
+  }
   ```
-4) [Sync gradle](https://www.delasign.com/blog/how-to-sync-an-android-project-with-its-gradle-files-in-android-studio/) successfully.
-5) Done! Your Android project is now ready to use Once. Go to [Usage / Examples](#usage--examples) or [Syntax](#syntax) for Once usage!
-
-### Install with gradle (Remote)
->Coming soon!
+2) In the `build.gradle` of the module(s) you wish to use Once with, add the following to `dependencies`:
+- ```groovy
+  dependencies {
+      // Required: Installs the .aar without any documentation.
+      implementation 'com.github.digidemic:once:1.1.0'
+      
+      // Optional: Displays documentation while writing coding. 
+      implementation 'com.github.digidemic:once:1.1.0:javadoc'
+  
+      // Optional: Displays documentation (more comprehensive than javadoc in some cases) and uncompiled code when stepping into library.
+      implementation 'com.github.digidemic:once:1.1.0:sources'
+  }
+  ```
+3) [Sync gradle](https://www.delasign.com/blog/how-to-sync-an-android-project-with-its-gradle-files-in-android-studio/) successfully.
+4) Done! Your Android project is now ready to use Once. Go to [Examples](#usage--examples) or [Syntax](#syntax) for Once usage!
 
 <br>
 
@@ -282,7 +291,7 @@ There are 3 main usages for Once. Two of which directly call a function without 
 ## License
 Once created by Adam Steinberg of DIGIDEMIC, LLC
 ```
-Copyright 2023 DIGIDEMIC, LLC
+Copyright 2024 DIGIDEMIC, LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
