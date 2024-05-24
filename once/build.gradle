@@ -1,6 +1,7 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'com.android.library' version '8.0.2'
+    id 'org.jetbrains.kotlin.android' version '1.6.20'
+    id 'maven-publish'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         minSdk 4
-        targetSdk 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,9 +29,54 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+afterEvaluate {
+    android.libraryVariants.each {variant ->
+        publishing.publications.create(variant.name, MavenPublication){
+            from components.findByName(variant.name)
+
+            groupId = 'com.github.once'
+            artifactId = "once"
+            version = '1.1.0'
+
+            pom {
+                name = 'Once'
+                description = 'Pass custom IDs or create variables that return \'true\' only the first time used... Once!'
+                url = 'https://github.com/Digidemic/once'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'Digidemic'
+                        name = 'Adam Steinberg'
+                        email = 'digidemic@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git://github.com/Digidemic/once.git'
+                    developerConnection = 'scm:git://github.com/Digidemic/once.git'
+                    url = 'git://github.com/Digidemic/once.git'
+                }
+            }
+        }
+    }
 }

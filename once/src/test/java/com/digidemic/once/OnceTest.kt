@@ -1,12 +1,12 @@
 /**
- * Once v1.0.0 - https://github.com/Digidemic/Once
- * (c) 2023 DIGIDEMIC, LLC - All Rights Reserved
+ * Once v1.1.0 - https://github.com/Digidemic/once
+ * (c) 2024 DIGIDEMIC, LLC - All Rights Reserved
  * Once developed by Adam Steinberg of DIGIDEMIC, LLC
  * License: Apache License 2.0
  *
  * ====
  *
- * Copyright 2023 DIGIDEMIC, LLC
+ * Copyright 2024 DIGIDEMIC, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
